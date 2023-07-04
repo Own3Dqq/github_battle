@@ -1,8 +1,8 @@
-import React from 'react';
 import { memo } from 'react';
+import { Link } from 'react-router-dom';
 
 const languages = ['All', 'JavaScript', 'Ruby', 'Java', 'CSS', 'Python'];
-const SelectedLanguage = memo(({ selectedLanguage, setSelectedLanguage }) => {
+const SelectedLanguage = memo(({ selectedLanguage, setSelectedLanguage, setQueryParams }) => {
     return (
         <>
             <ul className='languages'>
@@ -14,9 +14,10 @@ const SelectedLanguage = memo(({ selectedLanguage, setSelectedLanguage }) => {
                             className={language === selectedLanguage ? 'x' : 'y'}
                             onClick={() => {
                                 setSelectedLanguage(language);
+                                setQueryParams({ language: language });
                             }}
                         >
-                            {language}
+                            <Link to={`?language=${language}`}>{language}</Link>
                         </li>
                     );
                 })}

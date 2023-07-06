@@ -1,26 +1,33 @@
 import React, { useEffect, useState } from 'react';
-import { fetchPopularRepos } from './api';
+import { fetchPopularRepos } from '../api';
 import SelectedLanguage from './SelectedLanguage';
 import Repos from './Repos';
-import LoadingSpinner from './LoadingSpinner';
-import { useSearchParams } from 'react-router-dom';
+import LoadingSpinner from '../Spinner/LoadingSpinner';
+import { useLocation } from 'react-router-dom';
+
 
 const Popular = () => {
     const [selectedLanguage, setSelectedLanguage] = useState('All');
     const [loading, setLoading] = useState(false);
     const [repos, setRepos] = useState([]);
     const [error, setError] = useState(null);
-    const [searchParams, setSearchParams] = useSearchParams();
+
+    const location = useLocation();
+
 
     useEffect(() => {
         setLoading(true);
-        const params = searchParams.get('language'); // JavaScript
-        setSelectedLanguage(params);
+        const params = new URLSearchParams(location.search).get('language');
+        setSelectedLanguage(params ? params : selectedLanguage);
 
-        fetchPopularRepos(selectedLanguage)
+        console.log(selectedLanguage);
+
+        fetchPopularRepos(params && selectedLanguage)
             .then((data) => setRepos(data))
             .catch((error) => setError(error))
             .finally(() => setLoading(false));
+
+
     }, [selectedLanguage]);
 
     if (error) {
@@ -33,7 +40,6 @@ const Popular = () => {
             <SelectedLanguage
                 selectedLanguage={selectedLanguage}
                 setSelectedLanguage={setSelectedLanguage}
-                setQueryParams={setSearchParams}
             />
             <Repos repos={repos} />
         </div>

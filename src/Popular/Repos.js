@@ -2,7 +2,7 @@ import React from 'react';
 
 const Repos = ({ repos }) => {
     return (
-        <div>
+        <div className='container'>
             <ul className='popular-list'>
                 {repos.map((repo, index) => {
                     return (

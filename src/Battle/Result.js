@@ -43,7 +43,6 @@ const Result = () => {
                     score: data[1].score,
                 }
             })
-            console.log(data[0].profile.login)
         })
             .catch((error) => setError(error))
             .finally(() => setLoading(false));
@@ -55,13 +54,13 @@ const Result = () => {
             <div className='row'>
                 <PlayerPreview avatar={playerResult.playerWinner.avatar} name={playerResult.playerWinner.login} >
                     {
-                        <div className="container">
-                            <ul>
-                                <li>Name: {playerResult.playerWinner.name ? playerResult.playerWinner.name : 'Not assigned'}</li>
-                                <li>Location: {playerResult.playerWinner.location ? playerResult.playerWinner.location : 'Not assigned'}</li>
-                                <li>Company: {playerResult.playerWinner.company ? playerResult.playerWinner.company : 'Not assigned'}</li>
-                                <li>Followers: {playerResult.playerWinner.followers}</li>
-                                <li>Public repository: {playerResult.playerWinner.repos}</li>
+                        <div className="user__info">
+                            <ul className='list'>
+                                <li className='list__item'>Name: {playerResult.playerWinner.name ? playerResult.playerWinner.name : 'Not assigned'}</li>
+                                <li className='list__item'>Location: {playerResult.playerWinner.location ? playerResult.playerWinner.location : 'Not assigned'}</li>
+                                <li className='list__item'>Company: {playerResult.playerWinner.company ? playerResult.playerWinner.company : 'Not assigned'}</li>
+                                <li className='list__item'>Followers: {playerResult.playerWinner.followers}</li>
+                                <li className='list__item'>Public repository: {playerResult.playerWinner.repos}</li>
                             </ul>
 
                             <h2>Winner</h2>
@@ -72,24 +71,25 @@ const Result = () => {
                 <PlayerPreview avatar={playerResult.playerLoser.avatar} name={playerResult.playerLoser.login}  >
                     {
 
-                        <div className="container">
-                            <ul>
-                                <li>Name: {playerResult.playerLoser.name ? playerResult.playerLoser.name : 'Not assigned'}</li>
-                                <li>Location: {playerResult.playerLoser.location ? playerResult.playerLoser.location : 'Not assigned'}</li>
-                                <li>Company: {playerResult.playerLoser.company ? playerResult.playerLoser.company : 'Not assigned'}</li>
-                                <li>Followers: {playerResult.playerLoser.followers}</li>
-                                <li>Public repository: {playerResult.playerLoser.repos}</li>
+                        <div className="user__info">
+                            <ul className='list'>
+                                <li className='list__item'>Name: {playerResult.playerLoser.name ? playerResult.playerLoser.name : 'Not assigned'}</li>
+                                <li className='list__item'>Location: {playerResult.playerLoser.location ? playerResult.playerLoser.location : 'Not assigned'}</li>
+                                <li className='list__item'>Company: {playerResult.playerLoser.company ? playerResult.playerLoser.company : 'Not assigned'}</li>
+                                <li className='list__item'>Followers: {playerResult.playerLoser.followers}</li>
+                                <li className='list__item'>Public repository: {playerResult.playerLoser.repos}</li>
                             </ul>
 
-                            <h2>Loser</h2>
-                            <p>Score: {playerResult.playerLoser.score}</p>
+                            <h2 className='result__title'>Loser</h2>
+                            <p className='result__text'>Score: <b>{playerResult.playerLoser.score}</b></p>
                         </div>
                     }
                 </PlayerPreview>
-                <div>
-                    <Link className='button' to={'/battle'} > Play again</Link >
-                </div>
             </div >
+            <div className="row">
+                <Link className='button' to={'/battle'} > Play again</Link >
+
+            </div>
 
         </>
     )

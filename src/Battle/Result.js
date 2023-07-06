@@ -63,8 +63,8 @@ const Result = () => {
                                 <li className='list__item'>Public repository: {playerResult.playerWinner.repos}</li>
                             </ul>
 
-                            <h2>Winner</h2>
-                            <span>Score: {playerResult.playerWinner.score}</span>
+                            <h2 className='result__title'>Winner</h2>
+                            <span className='result__text'>Score: <b>{playerResult.playerWinner.score}</b></span>
                         </div>
                     }
                 </PlayerPreview>

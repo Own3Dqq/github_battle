@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 const PlayerInput = ({ id, name, onSubmit }) => {
     const [username, setUsername] = useState('');
 
     const handleSubmit = (event) => {
         event.preventDefault();
-
         onSubmit(id, username);
     };
 

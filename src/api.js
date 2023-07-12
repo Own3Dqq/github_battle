@@ -23,15 +23,15 @@ const getStarCount = (repos) => {
 const calculateScore = (profile, repos) => {
     const followers = profile.followers;
     const totalStats = getStarCount(repos);
-
     return followers + totalStats;
 };
 
 const getUserData = (player) => {
-    return Promise.all([getProfile(player), getRepos(player)]).then(([profile, repos]) => ({
-        profile,
-        score: calculateScore(profile, repos),
-    }));
+    return Promise.all([getProfile(player), getRepos(player)])
+        .then(([profile, repos]) => ({
+            profile,
+            score: calculateScore(profile, repos),
+        }));
 };
 
 const sortPlayers = (players) => players.sort((a, b) => b.score - a.score);

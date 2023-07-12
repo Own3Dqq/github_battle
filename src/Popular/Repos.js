@@ -1,6 +1,20 @@
 import React from 'react';
+import {useSelector} from 'react-redux';
 
-const Repos = ({ repos }) => {
+
+const Repos = () => {
+    const loading = useSelector(state => state.popularReducer.loading);
+    const repos = useSelector(state => state.popularReducer.repos);
+    const error = useSelector(state => state.popularReducer.error);
+
+    if (loading) {
+        return <h1>Loading...</h1>
+    }
+
+    if (error) {
+        return <p>{error}</p>
+    }
+
     return (
         <div className='container'>
             <ul className='popular-list'>
@@ -10,7 +24,7 @@ const Repos = ({ repos }) => {
                             <div className='popular-rank'>#{index + 1}</div>
                             <ul className='space-list-item'>
                                 <li>
-                                    <img className='avatar' src={repo.owner.avatar_url} alt='Avatar' />
+                                    <img className='avatar' src={repo.owner.avatar_url} alt='Avatar'/>
                                 </li>
                                 <li>
                                     <a href={repo.html_url} target='_blank' rel='noreferrer'>

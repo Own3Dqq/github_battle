@@ -1,5 +1,6 @@
 import React from 'react';
-import {useSelector} from 'react-redux';
+import { useSelector } from 'react-redux';
+import LoadingSpinner from '../Spinner/LoadingSpinner'
 
 
 const Repos = () => {
@@ -7,16 +8,12 @@ const Repos = () => {
     const repos = useSelector(state => state.popularReducer.repos);
     const error = useSelector(state => state.popularReducer.error);
 
-    if (loading) {
-        return <h1>Loading...</h1>
-    }
 
-    if (error) {
-        return <p>{error}</p>
-    }
+
 
     return (
         <div className='container'>
+            {loading && <LoadingSpinner />}
             <ul className='popular-list'>
                 {repos.map((repo, index) => {
                     return (
@@ -24,7 +21,7 @@ const Repos = () => {
                             <div className='popular-rank'>#{index + 1}</div>
                             <ul className='space-list-item'>
                                 <li>
-                                    <img className='avatar' src={repo.owner.avatar_url} alt='Avatar'/>
+                                    <img className='avatar' src={repo.owner.avatar_url} alt='Avatar' />
                                 </li>
                                 <li>
                                     <a href={repo.html_url} target='_blank' rel='noreferrer'>

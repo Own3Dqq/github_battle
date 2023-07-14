@@ -1,9 +1,15 @@
-import { applyMiddleware, createStore } from "redux";
-import thunk from "redux-thunk";
-import rootReducer from './root.reducer'
+import { configureStore } from "@reduxjs/toolkit";
+import popularSlice from "./popular/popular.slice";
+import battleSlice from './battle/battle.slice';
 
 
-const store = createStore(rootReducer, applyMiddleware(thunk))
 
+const store = configureStore({
+    reducer: {
+        popular: popularSlice,
+        battle: battleSlice,
+
+    },
+})
 
 export default store;

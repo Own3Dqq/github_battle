@@ -3,23 +3,23 @@ import { useLocation, Link } from 'react-router-dom';
 import PlayerPreview from './PlayerPreview';
 import LoadingSpinner from '../Spinner/LoadingSpinner'
 import { useDispatch, useSelector } from 'react-redux';
-import { getResult } from '../redux/battle/battle.thunk';
-import { getResultResetAction } from '../redux/battle/battle.action';
+import { getResultResetAction } from '../redux/battle/battle.slice'
+import { getResult } from '../redux/battle/battle.requsts';
 
 
 const Result = () => {
     const dispatch = useDispatch();
     const location = useLocation();
 
-    const Winner = useSelector(state => state.battleReducer.result[0]);
-    const Loser = useSelector(state => state.battleReducer.result[1]);
-    const loading = useSelector(state => state.battleReducer.loading)
-    const error = useSelector(state => state.error)
+    const Winner = useSelector(state => state.battle.result[0]);
+    const Loser = useSelector(state => state.battle.result[1]);
+    const loading = useSelector(state => state.battle.loading)
+    const error = useSelector(state => state.battle.error)
 
     useEffect(() => {
         const param = new URLSearchParams(location.search)
         dispatch(getResult([param.get('playerOneName'), param.get('playerTwoName')]))
-    }, [])
+    })
 
     if (error) {
         return <h1>Error: {error}</h1>

@@ -1,16 +1,17 @@
-import {memo, useEffect} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
+import { memo, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import {getRepos} from "../redux/popular/popular.thunk";
+// import { getRepos } from "../redux/popular/popular.thunk";
+import { fetchPopularRepos } from "../redux/popular/popular.requests";
 
 const languages = ['All', 'JavaScript', 'Ruby', 'Java', 'CSS', 'Python'];
 
 const SelectedLanguage = memo(() => {
     const dispatch = useDispatch();
-    const selectedLanguage = useSelector(state => state.popularReducer.selectedLanguage)
+    const selectedLanguage = useSelector(state => state.popular.selectedLanguage)
 
     useEffect(() => {
-        dispatch(getRepos(selectedLanguage))
+        dispatch(fetchPopularRepos(selectedLanguage))
     }, [])
 
     return (
@@ -22,7 +23,8 @@ const SelectedLanguage = memo(() => {
                             key={index}
                             className={language === selectedLanguage ? 'active' : ''}
                             onClick={() => {
-                                dispatch(getRepos(language))
+                                // dispatch(getRepos(language))
+                                dispatch(fetchPopularRepos(selectedLanguage))
                             }}
                         >
                             <Link to={`?language=${language}`}>{language}</Link>

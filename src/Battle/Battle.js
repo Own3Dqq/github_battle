@@ -2,13 +2,8 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import PlayerInput from './PlayerInput';
 import PlayerPreview from './PlayerPreview';
-import { getIncrementCountAction } from '../redux/battle/battle.action'
-import { useDispatch, useSelector } from "react-redux";
-
 
 const Battle = () => {
-    const dispatch = useDispatch();
-    const counter = useSelector(state => state.battleReducer.count);
 
     const [playerData, setPlayerData] = useState({
         playerOneName: '',
@@ -39,8 +34,6 @@ const Battle = () => {
             <div className='contanier'>
                 <h1 className='title'>Let's check who will be a stronger</h1>
                 <span className='subtitle'>Enter github username in field</span>
-                {/* <h2>{counter}</h2>
-                <button onClick={() => dispatch(getIncrementCountAction())}>increment</button> */}
             </div>
 
             <div className='row'>

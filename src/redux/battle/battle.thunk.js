@@ -9,5 +9,5 @@
 //     battle(array)
 //         .then((data) => dispatch(getResultSuccessAction(data)))
 //         .catch(error => dispatch(getResultFailureAction(error)))
-
+//
 // }

@@ -4,7 +4,7 @@ import PlayerPreview from './PlayerPreview';
 import LoadingSpinner from '../Spinner/LoadingSpinner'
 import { useDispatch, useSelector } from 'react-redux';
 import { getResultResetAction } from '../redux/battle/battle.slice'
-import { getResult } from '../redux/battle/battle.requsts';
+import { getResult } from '../redux/battle/battle.requests';
 
 
 const Result = () => {
@@ -19,7 +19,7 @@ const Result = () => {
     useEffect(() => {
         const param = new URLSearchParams(location.search)
         dispatch(getResult([param.get('playerOneName'), param.get('playerTwoName')]))
-    })
+    }, [])
 
     if (error) {
         return <h1>Error: {error}</h1>

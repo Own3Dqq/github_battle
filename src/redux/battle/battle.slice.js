@@ -1,5 +1,5 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { getResult } from './battle.requsts';
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { getResult } from './battle.requests';
 
 const initialState = {
     data: null,
@@ -7,6 +7,47 @@ const initialState = {
     error: null,
     result: [],
 }
+
+
+
+/* export const fetchTodos = createAsyncThunk(
+    'todos/fetchTodos',
+    async function () {
+        const responce = await fetch('https://jsonplaceholder.typicode.com/todos')
+        const data = await responce.json();
+        return data
+    }
+)
+ */
+/* 
+const todoSlice = createSlice({
+    name: 'todos',
+    initialState: {
+        todos: [],
+        status: null,
+        error: null,
+    },
+    reducers: {
+
+    },
+    extraReducers: {
+        [fetchTodos.pending]: (state, action) => {
+            state.status = 'loading';
+            state.error = null;
+        },
+        [fetchTodos.fulfilled]: (state, action) => {
+            state.status = 'resolved'
+            state.todos = action.payload;
+        },
+        [fetchTodos.rejected]: (state, action) => {
+            state.status = 'rejected';
+            state.error = action.message;
+        }
+    }
+}) */
+
+
+
 
 const battleSlice = createSlice(
     {

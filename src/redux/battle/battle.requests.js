@@ -1,31 +1,15 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { battle } from '../../api'
+import { battle } from '../../api';
 
 
-export const getResult = createAsyncThunk('battle/getResult',  async (array, {rejectedWithValue} ) => {
-
-})
-
-
-
-
-// export const getResult = createAsyncThunk('battle/getResult', async (array, { dispatch }) => {
-//     try {
-//         dispatch(getResultLoadingAction());
-//         const data = await battle(array)
-//         dispatch(getResultSuccessAction(data))
-//     } catch (error) {
-//         dispatch(getResultFailureAction(error))
-//     }
-// })
+export const fetchResponseResult = createAsyncThunk('battle/fetchResponseResult',
+    async (players, { rejectWithValue }) => {
+        try {
+            const sortedPlayers = await battle(players);
+            return sortedPlayers;
+        } catch (error) {
+            return rejectWithValue(error);
+        }
+    })
 
 
-// export const getResult = createAsyncThunk('battle/getResult', async (array, { dispatch }) => {
-//     try {
-//         dispatch(getResultLoadingAction());
-//         const data = await battle(array);
-//         dispatch(getResultSuccessAction(data));
-//     } catch (error) {
-//         dispatch(getResultFailureAction(error));
-//     }
-// });

@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import { fetchPopularRepos } from "../redux/popular/popular.requests";
 import { setSelectedLanguage } from '../redux/popular/popular.slice';
 

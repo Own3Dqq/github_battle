@@ -3,13 +3,16 @@ import { useLocation, Link } from 'react-router-dom';
 import PlayerPreview from './PlayerPreview';
 import LoadingSpinner from '../Spinner/LoadingSpinner'
 import { useDispatch, useSelector } from 'react-redux';
-import { getResultResetAction } from '../redux/battle/battle.slice'
-import { getResult } from '../redux/battle/battle.requests';
+import { getResultReset } from '../redux/battle/battle.slice'
+import { fetchResponseResult } from '../redux/battle/battle.requests';
 
 
 const Result = () => {
     const dispatch = useDispatch();
     const location = useLocation();
+
+    const data = useSelector(state => state.battle.result)
+    console.log(data);
 
     const Winner = useSelector(state => state.battle.result[0]);
     const Loser = useSelector(state => state.battle.result[1]);
@@ -18,7 +21,7 @@ const Result = () => {
 
     useEffect(() => {
         const param = new URLSearchParams(location.search)
-        dispatch(getResult([param.get('playerOneName'), param.get('playerTwoName')]))
+        dispatch(fetchResponseResult([param.get('playerOneName'), param.get('playerTwoName')]))
     }, [])
 
     if (error) {
@@ -65,7 +68,7 @@ const Result = () => {
                 </PlayerPreview>
             </div >
             <div className="row">
-                <Link className='button' to={'/battle'} onClick={() => dispatch(getResultResetAction())} > Play again</Link >
+                <Link className='button' to={'/battle'} onClick={() => dispatch(getResultReset())} > Play again</Link >
 
             </div>
 

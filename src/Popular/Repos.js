@@ -1,8 +1,19 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+import LoadingSpinner from '../Spinner/LoadingSpinner'
 
-const Repos = ({ repos }) => {
+
+const Repos = () => {
+    const loading = useSelector(state => state.popularReducer.loading);
+    const repos = useSelector(state => state.popularReducer.repos);
+    const error = useSelector(state => state.popularReducer.error);
+
+
+
+
     return (
-        <div>
+        <div className='container'>
+            {loading && <LoadingSpinner />}
             <ul className='popular-list'>
                 {repos.map((repo, index) => {
                     return (

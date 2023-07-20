@@ -1,17 +1,24 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { fetchPopularRepos } from "../redux/popular/popular.requests";
 import { setSelectedLanguage } from '../redux/popular/popular.slice';
+import { useLocation } from 'react-router-dom';
+
 
 const languages = ['All', 'JavaScript', 'Ruby', 'Java', 'CSS', 'Python'];
 
 const SelectedLanguage = () => {
+    const location = useLocation();
     const dispatch = useDispatch();
-    const selectedLanguage = useSelector(state => state.popular.selectedLanguage) // All
+    const selectedLanguage = useSelector(state => state.popular.selectedLanguage); // All
 
     useEffect(() => {
-        dispatch(fetchPopularRepos(selectedLanguage))
+        const searchParams = new URLSearchParams(location.search);
+        const language = searchParams.get('language') || 'All';
+
+        dispatch(setSelectedLanguage(language));
+        dispatch(fetchPopularRepos(language));
     }, [])
 
     return (
@@ -27,8 +34,8 @@ const SelectedLanguage = () => {
                                 dispatch(fetchPopularRepos(language))
                             }}
                         >
-                            {language}
-                            {/* <Link to={`?language=${language}`}>{language}</Link> */}
+                            {/* {language} */}
+                            <Link to={`?language=${language}`}>{language}</Link>
                         </li>
                     );
                 })}

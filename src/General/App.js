@@ -3,7 +3,6 @@ import Home from './Home';
 import Nav from './Nav';
 import Popular from '../Popular/Popular';
 import Battle from '../Battle/Battle';
-import ErrorPage from '../Error/ErrorPage';
 import Result from '../Battle/Result';
 // import './App.css';
 
@@ -14,7 +13,7 @@ const router = createBrowserRouter([
             {
                 path: '/',
                 element: <Home />,
-                errorElement: <ErrorPage />,
+                // errorElement: <ErrorPage />,
             },
             {
                 path: '/popular',
@@ -28,10 +27,10 @@ const router = createBrowserRouter([
                 path: '/battle/results',
                 element: <Result />,
             },
-            {
-                path: '/*',
-                element: <ErrorPage />,
-            },
+            // {
+            //     path: '/*',
+            //     element: <ErrorPage />,
+            // },
         ],
     },
 ]);

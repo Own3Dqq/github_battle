@@ -19,7 +19,7 @@ const SelectedLanguage = () => {
 
         dispatch(setSelectedLanguage(language));
         dispatch(fetchPopularRepos(language));
-    }, [dispatch])
+    }, [dispatch, location.search])
 
     return (
         <>

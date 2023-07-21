@@ -8,9 +8,6 @@ const Repos = () => {
     const repos = useSelector(state => state.popular.repos);
     // const error = useSelector(state => state.popular.error);
 
-
-
-
     return (
         <div className='container'>
             {loading && <LoadingSpinner />}

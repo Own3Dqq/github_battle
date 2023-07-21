@@ -22,7 +22,7 @@ const Result = () => {
     useEffect(() => {
         const param = new URLSearchParams(location.search)
         dispatch(fetchResponseResult([param.get('playerOneName'), param.get('playerTwoName')]))
-    }, [])
+    }, [dispatch])
 
     if (error) {
         return <h1>Error: {error}</h1>

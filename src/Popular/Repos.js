@@ -6,7 +6,7 @@ import LoadingSpinner from '../Spinner/LoadingSpinner'
 const Repos = () => {
     const loading = useSelector(state => state.popular.loading);
     const repos = useSelector(state => state.popular.repos);
-    const error = useSelector(state => state.popular.error);
+    // const error = useSelector(state => state.popular.error);
 
 
 

@@ -4,7 +4,7 @@ import Nav from './Nav';
 import Popular from '../Popular/Popular';
 import Battle from '../Battle/Battle';
 import Result from '../Battle/Result';
-// import './App.css';
+import ErrorPage from './ErrorPage';
 
 const router = createBrowserRouter([
     {
@@ -13,7 +13,7 @@ const router = createBrowserRouter([
             {
                 path: '/',
                 element: <Home />,
-                // errorElement: <ErrorPage />,
+                errorElement: <ErrorPage />,
             },
             {
                 path: '/popular',
@@ -27,10 +27,10 @@ const router = createBrowserRouter([
                 path: '/battle/results',
                 element: <Result />,
             },
-            // {
-            //     path: '/*',
-            //     element: <ErrorPage />,
-            // },
+            {
+                path: '/*',
+                element: <ErrorPage />,
+            },
         ],
     },
 ]);

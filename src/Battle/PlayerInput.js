@@ -11,7 +11,7 @@ const PlayerInput = ({ id, name, onSubmit }) => {
     return (
         <>
             <form className='column' onSubmit={handleSubmit}>
-                <label className='header' htmlFor='username'>
+                <label className='text-4xl font-semibold' htmlFor='username'>
                     {name}
                 </label>
                 <input
@@ -22,9 +22,17 @@ const PlayerInput = ({ id, name, onSubmit }) => {
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                 />
-                <button className='button' type='submit' disabled={!username}>
+
+                <div class='button-container-2'>
+                    <span class='mas'>Submit</span>
+                    <button disabled={!username} type='submit' name='Hover'>
+                        Submit
+                    </button>
+                </div>
+
+                {/* <button className='button' type='submit' disabled={!username}>
                     Submit
-                </button>
+                </button> */}
             </form>
         </>
     );

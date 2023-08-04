@@ -1,15 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
     --active-color-link: #f24c3d;
     --main-color-linl: #0a0a0a;
     --main-bg-btn: #0a0a0a;
     --main-color-text-btn: #e6e6e6;
     --main-radius-btn: 4px;
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
 }
 
 body {

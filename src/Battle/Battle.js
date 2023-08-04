@@ -4,14 +4,12 @@ import PlayerInput from './PlayerInput';
 import PlayerPreview from './PlayerPreview';
 
 const Battle = () => {
-
     const [playerData, setPlayerData] = useState({
         playerOneName: '',
         playerTwoName: '',
         playerOneImage: null,
         playerTwoImage: null,
     });
-
 
     const handleSubmit = (id, username) => {
         setPlayerData((prevState) => ({
@@ -32,27 +30,26 @@ const Battle = () => {
     return (
         <div>
             <div className='contanier'>
-                <h1 className='title'>Let's check who will be a stronger</h1>
-                <span className='subtitle'>Enter github username in field</span>
+                <h1 className='text-3xl mb-2'>Let's check who will be a stronger</h1>
+                <span className='text-lx'>Enter github username in field</span>
             </div>
 
             <div className='row'>
-                {
-                    !playerData.playerOneImage ? (
-                        <PlayerInput id='playerOne' name='Player 1' onSubmit={handleSubmit} />
-                    ) : (
-                        <PlayerPreview
-                            avatar={playerData.playerOneImage}
-                            username={playerData.playerOneName}
-                            handleReset={() => handleReset('playerOne')}
-                        >
-                            {
-                                <button className='reset' onClick={() => handleReset('playerOne')}>
-                                    Reset
-                                </button>
-                            }
-                        </PlayerPreview>
-                    )}
+                {!playerData.playerOneImage ? (
+                    <PlayerInput id='playerOne' name='Player 1' onSubmit={handleSubmit} />
+                ) : (
+                    <PlayerPreview
+                        avatar={playerData.playerOneImage}
+                        username={playerData.playerOneName}
+                        handleReset={() => handleReset('playerOne')}
+                    >
+                        {
+                            <button className='reset' onClick={() => handleReset('playerOne')}>
+                                Reset
+                            </button>
+                        }
+                    </PlayerPreview>
+                )}
                 {!playerData.playerTwoImage ? (
                     <PlayerInput id='playerTwo' name='Player 2' onSubmit={handleSubmit} />
                 ) : (
@@ -70,20 +67,18 @@ const Battle = () => {
                 )}
             </div>
 
-            {playerData.playerOneImage && playerData.playerTwoImage
-                ?
-                <Link className='button'
+            {playerData.playerOneImage && playerData.playerTwoImage ? (
+                <Link
+                    className='button'
                     to={{
-                        pathname: 'results', search: `?playerOneName=${playerData.playerOneName}&&playerTwoName=${playerData.playerTwoName}`,
+                        pathname: 'results',
+                        search: `?playerOneName=${playerData.playerOneName}&&playerTwoName=${playerData.playerTwoName}`,
                     }}
                 >
                     Battle
                 </Link>
-                :
-                null}
+            ) : null}
         </div>
-
-
     );
 };
 
